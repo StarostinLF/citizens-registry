@@ -10,9 +10,15 @@ const links = [
 
 export default function Layout() {
 	return (
-		<div className='flex h-screen'>
-			<aside className='flex w-60 shrink-0 flex-col gap-1 bg-neutral-900 p-3 text-neutral-100'>
-				<div className='px-3 py-4 text-lg font-semibold'>Картотека граждан</div>
+		<div className={'flex h-screen'}>
+			<aside
+				className={
+					'flex w-60 shrink-0 flex-col gap-1 bg-neutral-900 p-3 text-neutral-100'
+				}
+			>
+				<div className={'px-3 py-4 text-lg font-semibold'}>
+					Картотека граждан
+				</div>
 				{links.map(({ to, label, icon: Icon }) => (
 					<NavLink
 						key={to}
@@ -27,12 +33,12 @@ export default function Layout() {
 						end={to === '/'}
 						to={to}
 					>
-						<Icon className='size-4' />
+						<Icon className={'size-4'} />
 						{label}
 					</NavLink>
 				))}
 			</aside>
-			<main className='flex min-w-0 flex-1 flex-col overflow-hidden'>
+			<main className={'flex min-w-0 flex-1 flex-col overflow-hidden'}>
 				<Outlet />
 			</main>
 		</div>

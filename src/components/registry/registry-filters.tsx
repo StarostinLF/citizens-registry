@@ -38,7 +38,7 @@ function FilterSelect({ label, options, value, onChange }: FilterSelectProps) {
 			value={value ?? ALL}
 			onValueChange={(v) => onChange(v === ALL || !v ? undefined : v)}
 		>
-			<SelectTrigger className='w-48'>
+			<SelectTrigger className={'w-48'}>
 				<SelectValue />
 			</SelectTrigger>
 			<SelectContent>
@@ -61,7 +61,6 @@ export default function RegistryFilters({ query, onChange }: Props) {
 	const [search, setSearch] = useState(query.search ?? '');
 	const timer = useRef<number | undefined>(undefined);
 
-	// Поиск уходит в URL с задержкой, чтобы не дёргать API на каждую букву
 	const onSearch = (value: string) => {
 		setSearch(value);
 		clearTimeout(timer.current);
@@ -96,58 +95,60 @@ export default function RegistryFilters({ query, onChange }: Props) {
 	);
 
 	return (
-		<div className='flex flex-wrap items-center gap-2'>
-			<div className='relative w-64'>
-				<Search className='text-muted-foreground absolute top-2 left-2.5 size-4' />
+		<div className={'flex flex-wrap items-center gap-2'}>
+			<div className={'relative w-64'}>
+				<Search
+					className={'text-muted-foreground absolute top-2 left-2.5 size-4'}
+				/>
 				<Input
-					className='pl-8'
-					placeholder='Поиск по ФИО'
+					className={'pl-8'}
+					placeholder={'Поиск по ФИО'}
 					value={search}
 					onChange={(e) => onSearch(e.target.value)}
 				/>
 			</div>
 			<FilterSelect
-				label='Все статусы'
+				label={'Все статусы'}
 				options={STATUSES}
 				value={query.status}
 				onChange={(status) => onChange({ status })}
 			/>
 			<FilterSelect
-				label='Любой пол'
+				label={'Любой пол'}
 				options={GENDERS}
 				value={query.gender}
 				onChange={(gender) => onChange({ gender })}
 			/>
 			<FilterSelect
-				label='Все регионы'
+				label={'Все регионы'}
 				options={REGIONS}
 				value={query.region}
 				onChange={(region) => onChange({ region })}
 			/>
 			<FilterSelect
-				label='Все категории'
+				label={'Все категории'}
 				options={CATEGORIES}
 				value={query.category}
 				onChange={(category) => onChange({ category })}
 			/>
 			<Input
-				className='w-28'
+				className={'w-28'}
 				min={0}
-				placeholder='Возраст от'
-				type='number'
+				placeholder={'Возраст от'}
+				type={'number'}
 				value={query.ageFrom ?? ''}
 				onChange={(e) => onChange({ ageFrom: e.target.value })}
 			/>
 			<Input
-				className='w-28'
+				className={'w-28'}
 				min={0}
-				placeholder='Возраст до'
-				type='number'
+				placeholder={'Возраст до'}
+				type={'number'}
 				value={query.ageTo ?? ''}
 				onChange={(e) => onChange({ ageTo: e.target.value })}
 			/>
 			{hasFilters && (
-				<Button variant='ghost' onClick={reset}>
+				<Button variant={'ghost'} onClick={reset}>
 					<X /> Сбросить
 				</Button>
 			)}

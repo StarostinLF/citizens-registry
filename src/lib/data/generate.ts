@@ -11,8 +11,8 @@ import {
 
 const TOTAL = 100_000;
 
-const pick = <T>(list: readonly T[]) => faker.helpers.arrayElement(list);
-const toDate = (d: Date) => d.toISOString().slice(0, 10);
+export const pick = <T>(list: readonly T[]) => faker.helpers.arrayElement(list);
+export const toDate = (d: Date) => d.toISOString().slice(0, 10);
 
 const makeCitizen = (id: number): CitizenRow => {
 	const gender = pick(GENDERS).value;

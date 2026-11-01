@@ -20,11 +20,13 @@ import { cn } from '@/lib/utils';
 
 const ROW_HEIGHT = 52;
 
-// Одна сетка на шапку и строки, чтобы колонки совпадали
 const GRID =
 	'grid grid-cols-[minmax(240px,2fr)_90px_170px_minmax(170px,1.5fr)_150px_170px_130px_100px_130px] items-center gap-x-3 px-4';
 
-const statusVariant: Record<CitizenStatus, 'default' | 'outline' | 'destructive' | 'secondary'> = {
+const statusVariant: Record<
+	CitizenStatus,
+	'default' | 'outline' | 'destructive' | 'secondary'
+> = {
 	active: 'default',
 	review: 'outline',
 	suspended: 'destructive',
@@ -44,7 +46,7 @@ const columns: Column[] = [
 		title: 'ФИО',
 		sortBy: 'lastName',
 		cell: (c) => (
-			<span className='font-medium'>
+			<span className={'font-medium'}>
 				{c.lastName} {c.firstName} {c.middleName}
 			</span>
 		),
@@ -61,8 +63,8 @@ const columns: Column[] = [
 		sortBy: 'region',
 		cell: (c) => (
 			<>
-				<div className='truncate'>{c.city}</div>
-				<div className='text-muted-foreground truncate text-xs'>
+				<div className={'truncate'}>{c.city}</div>
+				<div className={'text-muted-foreground truncate text-xs'}>
 					{labelOf(REGIONS, c.region)}
 				</div>
 			</>
@@ -108,7 +110,6 @@ export default function CitizensTable({
 }: Props) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 
-	// В DOM только видимые строки, даже если на странице их 100
 	const virtualizer = useVirtualizer({
 		count: rows.length,
 		estimateSize: () => ROW_HEIGHT,
@@ -121,8 +122,11 @@ export default function CitizensTable({
 	}, [query.page]);
 
 	return (
-		<div ref={scrollRef} className='min-h-0 flex-1 overflow-auto rounded-lg border'>
-			<div className='min-w-[1500px]'>
+		<div
+			ref={scrollRef}
+			className={'min-h-0 flex-1 overflow-auto rounded-lg border'}
+		>
+			<div className={'min-w-[1500px]'}>
 				<div
 					className={cn(
 						GRID,
@@ -143,12 +147,14 @@ export default function CitizensTable({
 						return (
 							<button
 								key={col.title}
-								className='hover:text-foreground flex items-center gap-1 text-left'
-								type='button'
+								className={
+									'hover:text-foreground flex items-center gap-1 text-left'
+								}
+								type={'button'}
 								onClick={() => onSort(sortBy)}
 							>
 								{col.title}
-								<Icon className='size-3.5' />
+								<Icon className={'size-3.5'} />
 							</button>
 						);
 					})}
@@ -156,15 +162,19 @@ export default function CitizensTable({
 
 				{isPending &&
 					Array.from({ length: 12 }, (_, i) => (
-						<div key={i} className={cn(GRID, 'border-b')} style={{ height: ROW_HEIGHT }}>
+						<div
+							key={i}
+							className={cn(GRID, 'border-b')}
+							style={{ height: ROW_HEIGHT }}
+						>
 							{columns.map((col) => (
-								<Skeleton key={col.title} className='h-4 w-3/4' />
+								<Skeleton key={col.title} className={'h-4 w-3/4'} />
 							))}
 						</div>
 					))}
 
 				{!isPending && rows.length === 0 && (
-					<div className='text-muted-foreground p-10 text-center text-sm'>
+					<div className={'text-muted-foreground p-10 text-center text-sm'}>
 						Ничего не найдено — попробуй изменить фильтры
 					</div>
 				)}
@@ -192,7 +202,7 @@ export default function CitizensTable({
 									to={`/registry/${c.id}`}
 								>
 									{columns.map((col) => (
-										<div key={col.title} className='truncate'>
+										<div key={col.title} className={'truncate'}>
 											{col.cell(c)}
 										</div>
 									))}

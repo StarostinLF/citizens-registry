@@ -2,8 +2,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import type { CitizenRow } from '@/lib/types/citizen';
 
-import CitizensTable from '@/components/citizens-table';
-import RegistryFilters from '@/components/registry-filters';
+import CitizensTable from '@/components/registry/citizens-table';
+import RegistryFilters from '@/components/registry/registry-filters';
 import { Button } from '@/components/ui/button';
 import {
 	Select,
@@ -24,7 +24,6 @@ export default function Registry() {
 	const total = data?.total ?? 0;
 	const pages = Math.max(1, Math.ceil(total / query.pageSize));
 
-	// asc → desc → без сортировки
 	const onSort = (key: keyof CitizenRow) => {
 		if (query.sortBy !== key) update({ sortBy: key, sortDir: 'asc' });
 		else if (query.sortDir === 'asc') update({ sortDir: 'desc' });
@@ -32,10 +31,10 @@ export default function Registry() {
 	};
 
 	return (
-		<div className='flex min-h-0 flex-1 flex-col gap-4 p-6'>
-			<div className='flex items-baseline justify-between'>
-				<h1 className='text-xl font-semibold'>Картотека граждан</h1>
-				<span className='text-muted-foreground text-sm'>
+		<div className={'flex min-h-0 flex-1 flex-col gap-4 p-6'}>
+			<div className={'flex items-baseline justify-between'}>
+				<h1 className={'text-xl font-semibold'}>Картотека граждан</h1>
+				<span className={'text-muted-foreground text-sm'}>
 					Найдено: {data ? total.toLocaleString('ru-RU') : '…'}
 				</span>
 			</div>
@@ -43,7 +42,9 @@ export default function Registry() {
 			<RegistryFilters query={query} onChange={update} />
 
 			{isError && (
-				<p className='text-destructive text-sm'>Не удалось загрузить данные</p>
+				<p className={'text-destructive text-sm'}>
+					Не удалось загрузить данные
+				</p>
 			)}
 
 			<CitizensTable
@@ -54,15 +55,15 @@ export default function Registry() {
 				onSort={onSort}
 			/>
 
-			<div className='flex items-center justify-between text-sm'>
-				<div className='flex items-center gap-2'>
-					<span className='text-muted-foreground'>На странице:</span>
+			<div className={'flex items-center justify-between text-sm'}>
+				<div className={'flex items-center gap-2'}>
+					<span className={'text-muted-foreground'}>На странице:</span>
 					<Select
 						items={PAGE_SIZES}
 						value={String(query.pageSize)}
 						onValueChange={(v) => update({ pageSize: v ?? undefined })}
 					>
-						<SelectTrigger size='sm'>
+						<SelectTrigger size={'sm'}>
 							<SelectValue />
 						</SelectTrigger>
 						<SelectContent>
@@ -74,22 +75,22 @@ export default function Registry() {
 						</SelectContent>
 					</Select>
 				</div>
-				<div className='flex items-center gap-2'>
-					<span className='text-muted-foreground'>
+				<div className={'flex items-center gap-2'}>
+					<span className={'text-muted-foreground'}>
 						Страница {query.page} из {pages}
 					</span>
 					<Button
 						disabled={query.page <= 1}
-						size='icon-sm'
-						variant='outline'
+						size={'icon-sm'}
+						variant={'outline'}
 						onClick={() => update({ page: query.page - 1 })}
 					>
 						<ChevronLeft />
 					</Button>
 					<Button
 						disabled={query.page >= pages}
-						size='icon-sm'
-						variant='outline'
+						size={'icon-sm'}
+						variant={'outline'}
 						onClick={() => update({ page: query.page + 1 })}
 					>
 						<ChevronRight />

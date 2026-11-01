@@ -10,7 +10,6 @@ import type { CitizenQuery, CitizenRow } from '@/lib/types/citizen';
 
 export type FilterPatch = Record<string, string | number | undefined>;
 
-// Фильтры, сортировка и страница хранятся в URL — выборкой можно делиться ссылкой
 export const useCitizenFilters = () => {
 	const [params, setParams] = useSearchParams();
 
@@ -34,7 +33,6 @@ export const useCitizenFilters = () => {
 		sortDir: params.get('sortDir') === 'desc' ? 'desc' : 'asc',
 	};
 
-	// Пустое значение удаляет параметр. Любое изменение, кроме page, сбрасывает страницу
 	const update = (patch: FilterPatch) =>
 		setParams(
 			(prev) => {

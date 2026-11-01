@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from './components/layout';
+import Layout from '@/components/layout/layout';
+import { Toaster } from './components/ui/sonner';
 import Citizen from './pages/citizen';
 import Home from './pages/home';
 import Registry from './pages/registry';
@@ -8,6 +9,7 @@ import Registry from './pages/registry';
 export default function App() {
 	return (
 		<BrowserRouter>
+			<Toaster />
 			<Routes>
 				<Route element={<Layout />}>
 					<Route element={<Home />} path={'/'} />

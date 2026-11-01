@@ -1,13 +1,21 @@
-import type { CitizenQuery, CitizenRow } from '@/lib/types/citizen';
+import type { SectionKey } from '@/lib/data/sections';
+import type {
+	CitizenDetails,
+	CitizenQuery,
+	CitizenRow,
+	SectionRow,
+} from '@/lib/types/citizen';
 
 import { getCitizens } from '@/lib/data/generate';
+import { makeDetails, makeSection } from '@/lib/data/generate-details';
 
 export interface Page<T> {
 	rows: T[];
 	total: number;
 }
 
-// Дата рождения человека, которому сегодня ровно `age` лет
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const birthDateByAge = (age: number) => {
 	const d = new Date();
 	d.setFullYear(d.getFullYear() - age);
@@ -17,7 +25,7 @@ const birthDateByAge = (age: number) => {
 export const fetchCitizens = async (
 	q: CitizenQuery,
 ): Promise<Page<CitizenRow>> => {
-	await new Promise((resolve) => setTimeout(resolve, 250));
+	await sleep(250);
 
 	const search = q.search?.trim().toLowerCase();
 	const latestBirth = q.ageFrom != null ? birthDateByAge(q.ageFrom) : null;
@@ -45,4 +53,19 @@ export const fetchCitizens = async (
 
 	const start = (q.page - 1) * q.pageSize;
 	return { rows: rows.slice(start, start + q.pageSize), total: rows.length };
+};
+
+export const fetchCitizen = async (id: number): Promise<CitizenDetails> => {
+	await sleep(250);
+	const citizen = makeDetails(id);
+	if (!citizen) throw new Error('Гражданин не найден');
+	return citizen;
+};
+
+export const fetchSection = async (
+	id: number,
+	key: SectionKey,
+): Promise<SectionRow[]> => {
+	await sleep(400);
+	return makeSection(id, key);
 };

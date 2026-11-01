@@ -87,9 +87,17 @@ export const REGIONS = [
 export type CitizenGender = (typeof GENDERS)[number]['value'];
 export type CitizenStatus = (typeof STATUSES)[number]['value'];
 export type CitizenCategory = (typeof CATEGORIES)[number]['value'];
+export type CitizenMarital = (typeof MARITAL_STATUSES)[number]['value'];
 export type CitizenRegion = (typeof REGIONS)[number]['value'];
 
 export const labelOf = (
 	dict: readonly { value: string; label: string }[],
 	value: string,
 ) => dict.find((o) => o.value === value)?.label ?? value;
+
+export const MARITAL_STATUSES = [
+	{ value: 'single', label: 'Не состоит в браке' },
+	{ value: 'married', label: 'Состоит в браке' },
+	{ value: 'divorced', label: 'Разведён(а)' },
+	{ value: 'widowed', label: 'Вдовец / вдова' },
+] as const;
