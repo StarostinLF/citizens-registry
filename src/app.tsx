@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from '@/components/layout/layout';
 import { Toaster } from './components/ui/sonner';
 import Citizen from './pages/citizen';
 import Home from './pages/home';
 import Registry from './pages/registry';
+
+import Layout from '@/components/layout/layout';
 
 export default function App() {
 	return (

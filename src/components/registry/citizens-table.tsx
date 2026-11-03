@@ -110,6 +110,7 @@ export default function CitizensTable({
 }: Props) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 
+	// eslint-disable-next-line react-hooks/incompatible-library
 	const virtualizer = useVirtualizer({
 		count: rows.length,
 		estimateSize: () => ROW_HEIGHT,
@@ -126,7 +127,7 @@ export default function CitizensTable({
 			ref={scrollRef}
 			className={'min-h-0 flex-1 overflow-auto rounded-lg border'}
 		>
-			<div className={'min-w-[1500px]'}>
+			<div className={'min-w-375'}>
 				<div
 					className={cn(
 						GRID,
@@ -159,7 +160,6 @@ export default function CitizensTable({
 						);
 					})}
 				</div>
-
 				{isPending &&
 					Array.from({ length: 12 }, (_, i) => (
 						<div
@@ -172,13 +172,11 @@ export default function CitizensTable({
 							))}
 						</div>
 					))}
-
 				{!isPending && rows.length === 0 && (
 					<div className={'text-muted-foreground p-10 text-center text-sm'}>
 						Ничего не найдено — попробуй изменить фильтры
 					</div>
 				)}
-
 				{rows.length > 0 && (
 					<div
 						className={cn('relative', isFetching && 'opacity-60')}

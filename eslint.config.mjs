@@ -51,7 +51,7 @@ export default defineConfig(
 				},
 			],
 			'no-undef': 'off',
-			'no-unused-vars': 'warn',
+			'no-unused-vars': 'off',
 			'no-useless-escape': 'off',
 			'react-hooks/exhaustive-deps': 'warn',
 			'react-hooks/rules-of-hooks': 'error',

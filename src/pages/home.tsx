@@ -85,7 +85,6 @@ export default function Home() {
 	return (
 		<div className={'flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6'}>
 			<h1 className={'text-xl font-semibold'}>Главная</h1>
-
 			<div className={'grid gap-4 sm:grid-cols-2 xl:grid-cols-4'}>
 				<KpiCard
 					hint={`Средний возраст — ${data?.avgAge ?? '…'} лет`}
@@ -114,7 +113,6 @@ export default function Home() {
 					value={data && fmt(data.openAppeals)}
 				/>
 			</div>
-
 			<div className={'grid gap-4 lg:grid-cols-3'}>
 				<ChartCard
 					className={'lg:col-span-2'}
@@ -146,7 +144,6 @@ export default function Home() {
 						</AreaChart>
 					</ChartContainer>
 				</ChartCard>
-
 				<ChartCard
 					description={'Клик — открыть в картотеке'}
 					loading={isPending}
@@ -174,7 +171,6 @@ export default function Home() {
 						</PieChart>
 					</ChartContainer>
 				</ChartCard>
-
 				<ChartCard
 					description={'Клик — фильтр по возрасту'}
 					loading={isPending}
@@ -206,7 +202,6 @@ export default function Home() {
 						</BarChart>
 					</ChartContainer>
 				</ChartCard>
-
 				<ChartCard
 					description={'Клик — открыть в картотеке'}
 					loading={isPending}
@@ -233,7 +228,6 @@ export default function Home() {
 						</PieChart>
 					</ChartContainer>
 				</ChartCard>
-
 				<ChartCard
 					description={'Топ-8 по числу граждан'}
 					loading={isPending}
@@ -264,7 +258,6 @@ export default function Home() {
 					</ChartContainer>
 				</ChartCard>
 			</div>
-
 			<div className={'grid gap-4 lg:grid-cols-3'}>
 				<ChartCard
 					description={'Клик — открыть в картотеке'}
@@ -295,7 +288,6 @@ export default function Home() {
 						</BarChart>
 					</ChartContainer>
 				</ChartCard>
-
 				<Card>
 					<CardHeader>
 						<CardTitle className={'flex items-center gap-2'}>
@@ -325,7 +317,6 @@ export default function Home() {
 						</ul>
 					</CardContent>
 				</Card>
-
 				<Card>
 					<CardHeader>
 						<CardTitle>Последние постановки на учёт</CardTitle>

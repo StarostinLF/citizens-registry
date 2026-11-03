@@ -38,7 +38,6 @@ export default function Registry() {
 					Найдено: {data ? total.toLocaleString('ru-RU') : '…'}
 				</span>
 			</div>
-
 			<RegistryFilters query={query} onChange={update} />
 
 			{isError && (
@@ -46,7 +45,6 @@ export default function Registry() {
 					Не удалось загрузить данные
 				</p>
 			)}
-
 			<CitizensTable
 				isFetching={isFetching}
 				isPending={isPending}
@@ -54,7 +52,6 @@ export default function Registry() {
 				rows={data?.rows ?? []}
 				onSort={onSort}
 			/>
-
 			<div className={'flex items-center justify-between text-sm'}>
 				<div className={'flex items-center gap-2'}>
 					<span className={'text-muted-foreground'}>На странице:</span>
